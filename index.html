@@ -267,7 +267,7 @@
                             <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Automated Backups</li>
                         </ul>
                     </div>
-                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-cyan-500 hover:bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all">List Server</button>
+                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-cyan-500 hover:bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all" onclick="pindahHalaman('rome')">List Server</button>
                 </div>
 
                 <!-- Plan 2 -->
@@ -303,7 +303,7 @@
                             <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Automated Backups</li>
                         </ul>
                     </div>
-                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-all">List Server</button>
+                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-all" onclick="pindahHalaman('milan')">List Server</button>
                 </div>
 
                 <!-- Plan 3 -->
@@ -339,7 +339,7 @@
                             <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Automated Backups</li>
                         </ul>
                     </div>
-                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-all">List Server</button>
+                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-all" onclick="pindahHalaman('genoa')">List Server</button>
                 </div>
               </div>
             </div>
@@ -753,5 +753,21 @@
           if (e.key === 'Enter') app.searchDomain();
       });
     </script>
+    <script>
+    function pindahHalaman(rome) {
+      window.location.href = "private rome.html";
+    }
+    </script>
+    <script>
+    function pindahHalaman(milan) {
+      window.location.href = "private milan.html";
+    }
+    </script>
+    <script>
+    function pindahHalaman(genoa) {
+      window.location.href = "private genoa.html";
+    }
+    </script>
   </body>
+
 </html>
