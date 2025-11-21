@@ -102,13 +102,13 @@
           <!-- Desktop Menu -->
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <button onclick="app.navigate('home')" data-nav="home" class="nav-btn px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 text-cyan-400 bg-cyan-950/30 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.15)]">Home</button>
+              <button onclick="pindahHalaman('home')" data-nav="home" class="nav-btn px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 text-cyan-400 bg-cyan-950/30 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.15)]">Home</button>
             </div>
           </div>
 
           <!-- Mobile Menu Button -->
           <div class="-mr-2 flex md:hidden">
-            <button onclick="app.toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-cyan-400 hover:text-white hover:bg-gray-800 focus:outline-none">
+            <button onclick="pindahHalaman('home')" class="inline-flex items-center justify-center p-2 rounded-md text-cyan-400 hover:text-white hover:bg-gray-800 focus:outline-none">
               <i data-lucide="menu" class="h-6 w-6"></i>
             </button>
           </div>
@@ -320,7 +320,7 @@
                 <a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="twitter" class="h-5 w-5"></i></a>
                 <a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="github" class="h-5 w-5"></i></a>
                 <a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
-                <a href="/" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                <a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
               </div>
             </div>
           </div>
@@ -514,5 +514,11 @@
           if (e.key === 'Enter') app.searchDomain();
       });
     </script>
+    <script>
+    function pindahHalaman(home) {
+      window.location.href = "index.html";
+    }
+    </script>
   </body>
+
 </html>
