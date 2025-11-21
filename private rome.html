@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlakeHost | Best Hostinger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons Script -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cyan: {
+                400: '#22d3ee',
+                500: '#06b6d4',
+                600: '#0891b2',
+                900: '#164e63',
+                950: '#083344',
+              },
+              gray: {
+                900: '#111827',
+                950: '#030712', // Deep black
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace'],
+            },
+            animation: {
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            }
+          },
+        },
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #030712;
+        color: #e2e8f0;
+        font-family: 'Inter', sans-serif;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0f172a; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #06b6d4; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #22d3ee; 
+      }
+      .glass-panel {
+        background: rgba(17, 24, 39, 0.9);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(34, 211, 238, 0.2);
+      }
+      .neon-text {
+        text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+      }
+      .hidden-section {
+        display: none;
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-[#030712] text-gray-100 font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+    
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-cyan-900/50 bg-gray-950/80 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div class="flex items-center cursor-pointer group" onclick="app.navigate('home')">
+            <div class="bg-cyan-500/10 p-2 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors duration-300">
+              <img src="img/logo.png" alt="Logo FlakeHost" class="h-6 w-6 text-cyan-400">
+            </div>
+            <span class="ml-3 text-xl font-bold tracking-wider text-white group-hover:text-cyan-400 transition-colors">
+              FLAKE<span class="text-cyan-400 neon-text">HOST</span>
+            </span>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <button onclick="app.navigate('home')" data-nav="home" class="nav-btn px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 text-cyan-400 bg-cyan-950/30 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.15)]">Home</button>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="-mr-2 flex md:hidden">
+            <button onclick="app.toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-cyan-400 hover:text-white hover:bg-gray-800 focus:outline-none">
+              <i data-lucide="menu" class="h-6 w-6"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-950 border-b border-cyan-900/50">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <button onclick="app.navigate('home')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Home</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="min-h-screen pt-16">
+
+      <!-- HOSTING VIEW -->
+            <div id="view-home" class="view-section animate-fade-in">
+        <div class="pt-16 pb-20 px-4">
+            <div class="max-w-7xl mx-auto">
+              <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-white mb-4">PRIVATE ROME</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Hosting servers with AMD Epyc 7002, RAM DDR4 3200Hz, region Singapore and stable network.</p>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plan 1 -->
+                <div class="relative p-6 rounded-xl bg-gray-900/40 border border-gray-800 hover:border-cyan-500/50 hover:bg-gray-900/60 transition-all duration-300 flex flex-col h-full">
+                    <div class="mb-4">
+                        <h3 class="text-2xl font-bold text-white text-center">Private Rome 1</h3>
+                        <div class="mt-2 flex items-baseline text-cyan-400">
+                          <span class="text-3xl font-bold tracking-tight">Rp</span>
+                          <span class="text-5xl font-extrabold tracking-tight neon-text">100.000</span>
+                          <span class="ml-1 text-xl text-gray-400 font-medium">/mo</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 space-y-4 mt-4 mb-8">
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2">
+                                <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">4 CPU Cores</span>
+                            </div>
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2">
+                                <i data-lucide="server" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">8GB RAM DDR4</span>
+                            </div>
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2 col-span-2">
+                                <i data-lucide="hard-drive" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">128GB NVMe SSD</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Free Subdomain</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> DDoS Protection</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> 99.9% Uptime</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Automated Backups</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6281284650572?text=Halo%2C%20Saya%20Ingin%20Membeli%20Private%20Rome%20Paket%201">
+                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-all">Buy Server</button>
+                    </a>
+                </div>
+
+                <!-- Plan 2 -->
+                <div class="relative p-6 rounded-xl bg-gray-900/40 border border-gray-800 hover:border-cyan-500/50 hover:bg-gray-900/60 transition-all duration-300 flex flex-col h-full">
+                    <div class="mb-4">
+                        <h3 class="text-2xl font-bold text-white text-center">Private Rome 2</h3>
+                        <div class="mt-2 flex items-baseline text-cyan-400">
+                          <span class="text-3xl font-bold tracking-tight">Rp</span>
+                          <span class="text-5xl font-extrabold tracking-tight neon-text">160.000</span>
+                          <span class="ml-1 text-xl text-gray-400 font-medium">/mo</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 space-y-4 mt-4 mb-8">
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2">
+                                <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">4 CPU Cores</span>
+                            </div>
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2">
+                                <i data-lucide="server" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">16GB RAM DDR4</span>
+                            </div>
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2 col-span-2">
+                                <i data-lucide="hard-drive" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">256GB NVMe SSD</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Free Subdomain</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> DDoS Protection</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> 99.9% Uptime</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Automated Backups</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6281284650572?text=Halo%2C%20Saya%20Ingin%20Membeli%20Private%20Rome%20Paket%202">
+                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-all">Buy Server</button>
+                    </a>
+                </div>
+
+                <!-- Plan 3 -->
+                <div class="relative p-6 rounded-xl bg-gray-900/40 border border-gray-800 hover:border-cyan-500/50 hover:bg-gray-900/60 transition-all duration-300 flex flex-col h-full">
+                    <div class="mb-4">
+                        <h3 class="text-2xl font-bold text-white text-center">Private Rome 3</h3>
+                        <div class="mt-2 flex items-baseline text-cyan-400">
+                          <span class="text-3xl font-bold tracking-tight">Rp</span>
+                          <span class="text-5xl font-extrabold tracking-tight neon-text">180.000</span>
+                          <span class="ml-1 text-xl text-gray-400 font-medium">/mo</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 space-y-4 mt-4 mb-8">
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2">
+                                <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">8 CPU Cores</span>
+                            </div>
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2">
+                                <i data-lucide="server" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">16GB RAM DDR4</span>
+                            </div>
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2 col-span-2">
+                                <i data-lucide="hard-drive" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">256GB NVMe SSD</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Free Subdomain</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> DDoS Protection</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> 99.9% Uptime</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Automated Backups</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6281284650572?text=Halo%2C%20Saya%20Ingin%20Membeli%20Private%20Rome%20Paket%203">
+                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-all">Buy Server</button>
+                    </a>
+                </div>
+
+                <!-- Plan 4 -->
+                <div class="relative p-6 rounded-xl bg-gray-900/40 border border-gray-800 hover:border-cyan-500/50 hover:bg-gray-900/60 transition-all duration-300 flex flex-col h-full">
+                    <div class="mb-4">
+                        <h3 class="text-2xl font-bold text-white text-center">Private Rome 4</h3>
+                        <div class="mt-2 flex items-baseline text-cyan-400">
+                          <span class="text-3xl font-bold tracking-tight">Rp</span>
+                          <span class="text-5xl font-extrabold tracking-tight neon-text">300.000</span>
+                          <span class="ml-1 text-xl text-gray-400 font-medium">/mo</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 space-y-4 mt-4 mb-8">
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2">
+                                <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">16 CPU Cores</span>
+                            </div>
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2">
+                                <i data-lucide="server" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">32GB RAM DDR4</span>
+                            </div>
+                            <div class="bg-black/30 p-2 rounded border border-gray-800 flex items-center space-x-2 col-span-2">
+                                <i data-lucide="hard-drive" class="w-4 h-4 text-cyan-400"></i>
+                                <span class="text-sm text-gray-300">350GB NVMe SSD</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Free Subdomain</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> DDoS Protection</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> 99.9% Uptime</li>
+                            <li class="flex items-start"><i data-lucide="check" class="h-5 w-5 text-cyan-500 mr-3"></i> Automated Backups</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/6281284650572?text=Halo%2C%20Saya%20Ingin%20Membeli%20Private%20Rome%20Paket%204">
+                    <button class="w-full py-3 px-4 rounded font-bold uppercase tracking-wider text-sm bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-all">Buy Server</button>
+                    </a>
+              </div>
+            </div>
+        </div>
+      </div>
+    </main>
+      
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-1">
+              <div class="flex items-center space-x-2 mb-4">
+                <img src="img/logo.png" alt="Logo FlakeHost" class="h-6 w-6 text-cyan-500">
+                <span class="text-xl font-bold text-white tracking-wider">FLAKE<span class="text-cyan-500">HOST</span></span>
+              </div>
+              <p class="text-sm text-gray-500">
+                Powering the next generation of gaming communities with high-performance infrastructure and stable networks.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-white font-bold uppercase tracking-wider mb-4">Services</h3>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-cyan-400 transition-colors">Home</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-white font-bold uppercase tracking-wider mb-4">Support</h3>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-cyan-400 transition-colors">Knowledge Base</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition-colors">System Status</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition-colors">Open Ticket</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition-colors">Contact Us</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-white font-bold uppercase tracking-wider mb-4">Connect</h3>
+              <div class="flex space-x-4">
+                <a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+                <a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="github" class="h-5 w-5"></i></a>
+                <a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+                <a href="/" class="text-gray-500 hover:text-cyan-400 transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="mt-12 pt-8 border-t border-gray-900 text-center text-xs text-gray-600">
+            &copy; 2024 FlakeHost. All rights reserved.
+          </div>
+        </div>
+    </footer>
+
+
+    <!-- App Logic -->
+    <script type="module">
+      import { GoogleGenAI } from "@google/genai";
+
+      // --- Lucide Init ---
+      lucide.createIcons();
+
+      // --- Application Logic ---
+      const appState = {
+        chatOpen: false,
+        messages: [{ role: 'model', parts: [{ text: "Systems Online. I'm NexusBot. Need help choosing a rig?" }] }],
+        chatLoading: false
+      };
+
+      // Exposed methods for HTML 'onclick' attributes
+      window.app = {
+        navigate: (viewId) => {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden-section'));
+            // Show target
+            document.getElementById(`view-${viewId}`).classList.remove('hidden-section');
+            
+            // Update Nav
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.dataset.nav === viewId) {
+                    btn.classList.add('text-cyan-400', 'bg-cyan-950/30', 'border-cyan-500/50', 'shadow-[0_0_15px_rgba(6,182,212,0.15)]', 'border');
+                    btn.classList.remove('text-gray-300', 'hover:text-white', 'hover:bg-gray-800');
+                } else {
+                    btn.classList.remove('text-cyan-400', 'bg-cyan-950/30', 'border-cyan-500/50', 'shadow-[0_0_15px_rgba(6,182,212,0.15)]', 'border');
+                    btn.classList.add('text-gray-300', 'hover:text-white', 'hover:bg-gray-800');
+                }
+            });
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo(0,0);
+        },
+
+        toggleMobileMenu: () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        },
+
+        toggleChat: () => {
+            const windowEl = document.getElementById('chat-window');
+            const btnEl = document.getElementById('chat-toggle-btn');
+            appState.chatOpen = !appState.chatOpen;
+
+            if (appState.chatOpen) {
+                windowEl.classList.remove('hidden');
+                btnEl.classList.add('hidden');
+                // Focus input
+                setTimeout(() => document.getElementById('chat-input').focus(), 100);
+            } else {
+                windowEl.classList.add('hidden');
+                btnEl.classList.remove('hidden');
+            }
+        },
+
+        sendMessage: async () => {
+            const inputEl = document.getElementById('chat-input');
+            const text = inputEl.value.trim();
+            if (!text || appState.chatLoading) return;
+
+            // User Message UI
+            app.appendMessage('user', text);
+            inputEl.value = '';
+            appState.chatLoading = true;
+            
+            // Add loading indicator
+            const loadingId = app.appendLoading();
+
+            // API Call
+            const historyForApi = appState.messages.map(m => ({
+                role: m.role,
+                parts: m.parts
+            }));
+            
+            const response = await sendGeminiMessage(historyForApi, text);
+            
+            // Remove loading
+            const loadingEl = document.getElementById(loadingId);
+            if(loadingEl) loadingEl.remove();
+
+            // Model Message UI
+            app.appendMessage('model', response);
+            
+            // Update history
+            appState.messages.push({ role: 'user', parts: [{ text }] });
+            appState.messages.push({ role: 'model', parts: [{ text: response }] });
+            appState.chatLoading = false;
+        },
+
+        appendMessage: (role, text) => {
+            const container = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = `flex ${role === 'user' ? 'justify-end' : 'justify-start'}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = `max-w-[80%] p-3 rounded-lg text-sm ${
+                role === 'user'
+                  ? 'bg-cyan-600 text-white rounded-br-none' 
+                  : 'bg-gray-800 text-gray-200 border border-gray-700 rounded-bl-none'
+            }`;
+            bubble.textContent = text;
+            
+            div.appendChild(bubble);
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        },
+
+        appendLoading: () => {
+            const container = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            const id = 'loading-' + Date.now();
+            div.id = id;
+            div.className = 'flex justify-start';
+            div.innerHTML = `
+                <div class="bg-gray-800 p-3 rounded-lg rounded-bl-none border border-gray-700">
+                   <i data-lucide="loader-2" class="h-4 w-4 text-cyan-400 animate-spin"></i>
+                </div>
+            `;
+            container.appendChild(div);
+            lucide.createIcons();
+            container.scrollTop = container.scrollHeight;
+            return id;
+        },
+
+        searchDomain: () => {
+            const query = document.getElementById('domain-input').value;
+            if (!query) return;
+
+            const icon = document.getElementById('search-icon');
+            const loader = document.getElementById('search-loader');
+            const resultContainer = document.getElementById('domain-result');
+
+            icon.classList.add('hidden');
+            loader.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+
+            // Mock Delay
+            setTimeout(() => {
+                icon.classList.remove('hidden');
+                loader.classList.add('hidden');
+                
+                const isAvailable = Math.random() > 0.3;
+                const domainName = query.includes('.') ? query : query + '.my.id';
+                
+                const resultHTML = `
+                    <div class="p-6 rounded-xl border ${isAvailable ? 'bg-green-900/20 border-green-500/50' : 'bg-red-900/20 border-red-500/50'}">
+                      <div class="flex items-center justify-between">
+                        <div class="text-left">
+                          <h3 class="text-xl font-bold text-white">${domainName}</h3>
+                          <p class="text-sm font-medium ${isAvailable ? 'text-green-400' : 'text-red-400'}">
+                            ${isAvailable ? 'Available' : 'Unavailable'}
+                          </p>
+                        </div>
+                        <div class="text-right">
+                          ${isAvailable ? `
+                             <p class="text-2xl font-bold text-white">Rp 20.000<span class="text-sm text-gray-400 font-normal">/yr</span></p>
+                             <button class="mt-2 bg-green-600 hover:bg-green-500 text-white px-4 py-1.5 rounded text-sm font-bold transition-colors"><a href="https://wa.me/6281276274398?text=Halo%2C%20saya%20ingin%20membeli%20domain%20my.id">Buy Now</a></button>
+                          ` : `
+                             <button class="bg-gray-700 text-gray-400 cursor-not-allowed px-4 py-1.5 rounded text-sm font-bold">Taken</button>
+                          `}
+                        </div>
+                      </div>
+                    </div>
+                `;
+                
+                resultContainer.innerHTML = resultHTML;
+                resultContainer.classList.remove('hidden');
+            }, 1500);
+        }
+      };
+
+      // Handle enter key in chat
+      document.getElementById('chat-input').addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') app.sendMessage();
+      });
+       // Handle enter key in domain
+       document.getElementById('domain-input').addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') app.searchDomain();
+      });
+    </script>
+  </body>
+</html>
